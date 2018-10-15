@@ -48,16 +48,15 @@ public class Main {
     }
 
     private static void readingIndex(QueriesPerformer queriesPerformer) {
-	    /*
+/*
 		queriesPerformer.printTopRankingTerms("authors", 10);
 		queriesPerformer.printTopRankingTerms("title", 10);
 */
     }
 
     private static void searching(QueriesPerformer queriesPerformer) {
-        // Example
-		/*
 		queriesPerformer.query("compiler program");
+		/*
 		queriesPerformer.query("Information Retrieval");
 		queriesPerformer.query("Information AND Retrieval");
 		queriesPerformer.query("Retrieval AND Information~ -Database");

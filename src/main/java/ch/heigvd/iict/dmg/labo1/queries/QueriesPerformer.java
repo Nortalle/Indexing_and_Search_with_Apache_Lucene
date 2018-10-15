@@ -60,7 +60,7 @@ public class QueriesPerformer {
             QueryParser parser = new QueryParser("summary", this.analyzer);
             Query query = parser.parse(q);
 
-            ScoreDoc[] results = indexSearcher.search(query, 1000).scoreDocs;
+            ScoreDoc[] results = indexSearcher.search(query, 5000).scoreDocs;
 
             System.out.println("Searching for [" + q + "]");
             System.out.println("Results found: " + results.length);
