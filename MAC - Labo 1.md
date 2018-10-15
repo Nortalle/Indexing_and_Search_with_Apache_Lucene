@@ -50,7 +50,7 @@ TODO
 
 - `id` : `LongPoint` and `StoredField`
 
-- `title` : `TextField.TYPE_STORED`
+- `title` : `Field` with `TextField.TYPE_STORED`
 
 - `summary ` : 
 
@@ -60,7 +60,7 @@ TODO
   sumType.storeTermVectors(); //  to the code to have access to the term vector in the index
   ```
 
-- `author` : `TextField.TYPE_STORED`
+- `author` : `StringField` with `TextField.TYPE_STORED`
 
 #### 6 - What should be added to the code to have access to the term vector in the index? 
 
@@ -108,19 +108,19 @@ storeTermVectors();
 
 ####1- Author with maximum of publications
 
-Jr with 125 publications
+Thacher Jr., H. C. with 38 publications
 
 ####2 - Top 10 terms in the title field
 
-|             | Frequency in the title field | Frequency in all the fields |
-| ----------- | ---------------------------- | --------------------------- |
-| algorithm   | 963                          | 987                         |
-| computer    | 260                          | 262                         |
-| system      | 172                          | 172                         |
-| programming | 154                          | 154                         |
-| method      | 125                          | 125                         |
-| data        | 110                          | 112                         |
-| systems     | 108                          | 109                         |
-| language    | 99                           | 101                         |
-| program     | 93                           | 93                          |
-| matrix      | 82                           | 82                          |
+| Top ranking terms | Frequency in the title field |
+| ----------------- | ---------------------------- |
+| algorithm         | 961                          |
+| computer          | 260                          |
+| system            | 172                          |
+| programming       | 154                          |
+| method            | 124                          |
+| data              | 110                          |
+| systems           | 108                          |
+| language          | 99                           |
+| program           | 93                           |
+| matrix            | 82                           |

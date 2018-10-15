@@ -1,0 +1,83 @@
+1. Yes the command line demo uses stopword removal. We tested it simply by making the following requests:
+- "the" : no results, mean empty request performed
+- "kill": 1 result
+- "kill the": 1 result (same)
+- "the kill": 1 result (same)
+
+2. It doesn't use stemming, we checked it easily by performing the following two queries:
+- "kill": 1 result
+- "killed": 0 results
+
+3. Yes it is case insensitive, we checked it by performing the following queries, "kill", "KILL", KiLl" which all returned the same single result
+
+4. Well it depends if our list of stopwords includes stems or not. If so we should first apply stemming and then stop words removal (to stem those stop words that might not be removed). Otherwise we should perform stop words removal to gain performance (avoid stemming stop words that are eventually removed)
+
+// Using different analyzers
+To calculate time we implemented the System.currentTimeMillis() in the code
+StandardAnalyzer
+number of indexed documents: 3203
+number of indexed terms: 26634
+number of indexed terms in the summary field: 19972
+top 10 frequent terms of the summary field in the index: 
+which, system, paper, computer, can, described, given, presented, time, from
+size of index on disk: 1297Kb
+required time for indexing: 1094 milliseconds
+
+WhitespaceAnalyzer
+number of indexed documents: 3203
+number of indexed terms: 34443
+number of indexed terms in the summary field: 26821
+top 10 frequent terms of the summary field in the index: 
+of, the, is, a, and, to, in, for, The, are
+size of index on disk: 1572Kb
+required time for indexing: 1086 milliseconds
+
+EnglishAnalyzer
+number of indexed documents: 3203
+number of indexed terms: 22513
+number of indexed terms in the summary field: 16724
+top 10 frequent terms of the summary field in the index: 
+us, which, comput, program, system, present, describ, paper, method, can
+size of index on disk: 1150Kb
+required time for indexing: 1210 milliseconds
+
+ShingleAnalyzerWrapper (2)
+number of indexed documents: 3203
+number of indexed terms: 105802
+number of indexed terms in the summary field: 85610
+top 10 frequent terms of the summary field in the index: 
+which, system, paper, computer, can,  paper, described, given, presented, time
+size of index on disk: 3462Kb
+required time for indexing: 1667 milliseconds
+
+ShingleAnalyzerWrapper (3)
+number of indexed documents: 3203
+number of indexed terms: 147205
+number of indexed terms in the summary field: 125776
+top 10 frequent terms of the summary field in the index: 
+which, system, computer, paper, can, described, time, given, presented, from
+size of index on disk: 4914Kb
+required time for indexing: 1882 milliseconds
+
+StopAnalyzer
+number of indexed documents: 3203
+number of indexed terms: 24025
+number of indexed terms in the summary field: 18342
+top 10 frequent terms of the summary field in the index: 
+system, computer, paper, presented, time, method, program, data, algorithm, discussed
+size of index on disk: 1153Kb
+required time for indexing: 1067 milliseconds
+
+// Reading index
+1. Author with maximum of publications: Jr with 125
+2. Top 10 terms in the title field
+algorithm, frequency: 963 , total frequency: 987
+computer, frequency: 260 , total frequency: 262
+system, frequency: 172 , total frequency: 172
+programming, frequency: 154 , total frequency: 154
+method, frequency: 125 , total frequency: 125
+data, frequency: 110 , total frequency: 112
+systems, frequency: 108 , total frequency: 109
+language, frequency: 99 , total frequency: 101
+program, frequency: 93 , total frequency: 93
+matrix, frequency: 82 , total frequency: 82

@@ -6,6 +6,7 @@ import ch.heigvd.iict.dmg.labo1.queries.QueriesPerformer;
 import ch.heigvd.iict.dmg.labo1.similarities.MySimilarity;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.core.StopAnalyzer;
+import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.shingle.ShingleAnalyzerWrapper;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -17,42 +18,44 @@ import java.io.IOException;
 
 public class Main {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		// 1.1. create an analyzer
-		Analyzer analyser = getAnalyzer();
+        // 1.1. create an analyzer
+        Analyzer analyser = getAnalyzer();
 
-		// TODO student "Tuning the Lucene Score"
-	    Similarity similarity = new ClassicSimilarity();
-		//Similarity similarity = new MySimilarity();
-		
-		CACMIndexer indexer = new CACMIndexer(analyser, similarity);
-		long time =  System.currentTimeMillis();
-		indexer.openIndex();
-		CACMParser parser = new CACMParser("documents/cacm.txt", indexer);
-		parser.startParsing();
-		indexer.finalizeIndex();
-		System.out.println("Time taken: " + (System.currentTimeMillis() - time));
-		
-		QueriesPerformer queriesPerformer = new QueriesPerformer(analyser, similarity);
+        // TODO student "Tuning the Lucene Score"
+        Similarity similarity = new ClassicSimilarity();
+        //Similarity similarity = new MySimilarity();
 
-		// Section "Reading Index"
-		readingIndex(queriesPerformer);
+        CACMIndexer indexer = new CACMIndexer(analyser, similarity);
+        long time = System.currentTimeMillis();
+        indexer.openIndex();
+        CACMParser parser = new CACMParser("documents/cacm.txt", indexer);
+        parser.startParsing();
+        indexer.finalizeIndex();
+        System.out.println("Time taken: " + (System.currentTimeMillis() - time));
 
-		// Section "Searching"
-		searching(queriesPerformer);
+        QueriesPerformer queriesPerformer = new QueriesPerformer(analyser, similarity);
 
-		queriesPerformer.close();
-		
-	}
+        // Section "Reading Index"
+        readingIndex(queriesPerformer);
 
-	private static void readingIndex(QueriesPerformer queriesPerformer) {
+        // Section "Searching"
+        searching(queriesPerformer);
+
+        queriesPerformer.close();
+
+    }
+
+    private static void readingIndex(QueriesPerformer queriesPerformer) {
+	    /*
 		queriesPerformer.printTopRankingTerms("authors", 10);
 		queriesPerformer.printTopRankingTerms("title", 10);
-	}
+*/
+    }
 
-	private static void searching(QueriesPerformer queriesPerformer) {
-		// Example
+    private static void searching(QueriesPerformer queriesPerformer) {
+        // Example
 		/*
 		queriesPerformer.query("compiler program");
 		queriesPerformer.query("Information Retrieval");
@@ -60,13 +63,14 @@ public class Main {
 		queriesPerformer.query("Retrieval AND Information~ -Database");
 		queriesPerformer.query("Info*");
 		queriesPerformer.query("Information Retrieval~5");*/
-	}
+    }
 
-	private static Analyzer getAnalyzer() {
+    private static Analyzer getAnalyzer() {
 
-		return new StandardAnalyzer();
-		//return new EnglishAnalyzer();
-		//return new ShingleAnalyzerWrapper(3,3);
+        return new StandardAnalyzer();
+        //return new WhitespaceAnalyzer();
+        //return new EnglishAnalyzer();
+        //return new ShingleAnalyzerWrapper(3,3);
 		/*
         try {
             FileReader reader = new FileReader("common_words.txt");
@@ -76,6 +80,6 @@ public class Main {
             return null;
         }
         */
-	}
+    }
 
 }
