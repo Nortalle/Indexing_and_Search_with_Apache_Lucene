@@ -19,7 +19,7 @@ public class MySimilarity extends ClassicSimilarity {
     @Override
     public float idf(long docFreq, long docCount) {
 
-        return (float)(Math.log(( docCount / (docFreq+1) )+ 1));
+        return (float)(Math.log((docCount / docFreq + 1) + 1));
     }
 
     @Override

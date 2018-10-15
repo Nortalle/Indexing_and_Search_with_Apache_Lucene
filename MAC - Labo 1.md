@@ -128,15 +128,18 @@ Thacher Jr., H. C. with 38 publications
 ####Code
 
 ```java
-Comparator comparator = new HighFreqTerms.DocFreqComparator();
+public void printTopRankingTerms(String field, int numTerms) {
 
-try {
-	TermStats[] stats = HighFreqTerms.getHighFreqTerms(this.indexReader, numTerms, field, comparator);
-	System.out.println("Top ranking terms for field [" + field + "] are: ");
-	for(TermStats stat : stats)
-		System.out.println(stat.termtext.utf8ToString() + " with " + stat.docFreq + " frequencies");
-} catch (Exception e) {
-	System.out.println("Failed querying");
-}
+	Comparator comparator = new HighFreqTerms.DocFreqComparator();
+
+	try {
+		TermStats[] stats = HighFreqTerms.getHighFreqTerms(this.indexReader, numTerms, 			field, comparator);
+		System.out.println("Top ranking terms for field [" + field + "] are: ");
+		for(TermStats stat : stats)
+			System.out.println(stat.termtext.utf8ToString() + " with " + stat.docFreq + 			" frequencies");
+	} catch (Exception e) {
+		System.out.println("Failed querying");
+	}
+}	
 ```
 

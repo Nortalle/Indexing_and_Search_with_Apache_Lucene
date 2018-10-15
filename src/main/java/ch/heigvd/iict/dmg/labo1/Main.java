@@ -66,9 +66,9 @@ public class Main {
 
     private static Analyzer getAnalyzer() {
 
-        return new StandardAnalyzer();
+        //return new StandardAnalyzer();
         //return new WhitespaceAnalyzer();
-        //return new EnglishAnalyzer();
+        return new EnglishAnalyzer();
         //return new ShingleAnalyzerWrapper(3,3);
 		/*
         try {
