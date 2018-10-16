@@ -1,3 +1,12 @@
+/*
+ * File         : CACMIndexer.java
+ * Project      : Indexing and Search with Apache Lucene
+ * Authors      : Hochet Guillaume 16 octobre 2018
+ *                Guidoux Vincent 16 octobre 2018
+ *
+ * Description  : Class to index the file CACM.txt with Lucene's help
+ *
+ */
 package ch.heigvd.iict.dmg.labo1.indexer;
 
 import ch.heigvd.iict.dmg.labo1.parsers.ParserListener;
@@ -52,20 +61,27 @@ public class CACMIndexer implements ParserListener {
 
         Document doc = new Document();
 
+        //Keep the publication id in the index and show it in the results set of your queries.
         doc.add(new LongPoint("id", id));
         doc.add(new StoredField("id", id));
 
         if (authors != null && authors.length() > 0)
             for (String author : authors.split(";"))
-                    doc.add(new StringField("authors", author, Field.Store.YES));
+                doc.add(new StringField("authors", author, Field.Store.YES));
 
         doc.add(new Field("title", title, TextField.TYPE_STORED));
 
         if (summary != null && summary.length() > 0) {
 
             FieldType sumType = new FieldType(TextField.TYPE_STORED);
-            sumType.setIndexOptions(IndexOptions.DOCS);
-            sumType.storeTermVectors();
+
+            //to have access to the term vector in the index
+            sumType.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);
+            sumType.setStoreTermVectors(true);
+            sumType.setStoreTermVectorPositions(true);
+            sumType.setStoreTermVectorOffsets(true);
+
+            sumType.setTokenized(true);
             doc.add(new Field("summary", summary, sumType));
         }
         try {
@@ -74,6 +90,7 @@ public class CACMIndexer implements ParserListener {
             e.printStackTrace();
         }
     }
+
 
     public void finalizeIndex() {
         if (this.indexWriter != null)

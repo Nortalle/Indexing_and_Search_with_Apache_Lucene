@@ -1,3 +1,18 @@
+/*
+ * File         : Main.java
+ * Project      : Indexing and Search with Apache Lucene
+ * Authors      : Hochet Guillaume 16 octobre 2018
+ *                Guidoux Vincent 16 octobre 2018
+ *
+ * Description  : The goal of this lab is to discover the Lucene platform and to learn its
+ * functionalities by using its Java API. Lucene is a library for indexing and
+ * searching text files, written in Java and available as open source under the
+ * Apache License. It is not a standalone application; it is designed to be
+ * integrated easily into applications that have to search text in local files or
+ * on the Internet. It attempts to balance efficiency, flexibility, and
+ * conceptual simplicity at the API level.
+ *
+ */
 package ch.heigvd.iict.dmg.labo1;
 
 import ch.heigvd.iict.dmg.labo1.indexer.CACMIndexer;

@@ -1,3 +1,13 @@
+/*
+ * File         : QueriesPerformer.java
+ * Project      : Indexing and Search with Apache Lucene
+ * Authors      : Hochet Guillaume 16 octobre 2018
+ *                Guidoux Vincent 16 octobre 2018
+ *
+ * Description  : Class that define how the query are made and propose methods to
+ * 					print top ranking terms
+ *
+ */
 package ch.heigvd.iict.dmg.labo1.queries;
 
 import org.apache.lucene.analysis.Analyzer;
