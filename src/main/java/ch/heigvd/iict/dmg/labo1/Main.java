@@ -70,8 +70,9 @@ public class Main {
     }
 
     private static void searching(QueriesPerformer queriesPerformer) {
-		queriesPerformer.query("compiler program");
 		/*
+		queriesPerformer.query("compiler program");
+
 		queriesPerformer.query("Information Retrieval");
 		queriesPerformer.query("Information AND Retrieval");
 		queriesPerformer.query("Retrieval AND Information~ -Database");
@@ -82,8 +83,8 @@ public class Main {
     private static Analyzer getAnalyzer() {
 
         //return new StandardAnalyzer();
-        //return new WhitespaceAnalyzer();
-        return new EnglishAnalyzer();
+        return new WhitespaceAnalyzer();
+        //return new EnglishAnalyzer();
         //return new ShingleAnalyzerWrapper(3,3);
 		/*
         try {

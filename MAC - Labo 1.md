@@ -122,6 +122,8 @@ sumType.setStoreTermVectorOffsets(true);storeTermVectors();
 
 ###Using different Analyzers
 
+See table on the last page
+
 ### Reading Index
 
 ####1- Author with maximum of publications
